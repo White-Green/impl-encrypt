@@ -1,3 +1,5 @@
+use std::io::Read;
+
 use clap::{App, Arg};
 
 mod test;
@@ -19,17 +21,21 @@ fn main() {
             .takes_value(true)
             .default_value("3"))
         .arg(Arg::new("input")
-            .about("input value to encrypt or decrypt")
-            .required(true))
+            .about("input value to encrypt or decrypt"))
         .get_matches();
+    let input = matches.value_of("input").map(str::to_string).unwrap_or_else(|| {
+        let mut s = String::new();
+        std::io::stdin().read_to_string(&mut s).expect("failed to read standard input");
+        s
+    });
     if let Ok(key) = matches.value_of("key").unwrap().parse() {
         if matches.is_present("decrypt") {
-            match decrypt(matches.value_of("input").unwrap(), key) {
+            match decrypt(&input, key) {
                 Ok(result) => println!("{}", result),
                 Err(e) => eprintln!("error:{:?}", e),
             }
         } else {
-            match encrypt(matches.value_of("input").unwrap(), key) {
+            match encrypt(&input, key) {
                 Ok(result) => println!("{}", result),
                 Err(e) => eprintln!("error:{:?}", e),
             }
