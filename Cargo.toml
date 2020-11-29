@@ -8,7 +8,12 @@ edition = "2018"
 
 [dependencies]
 clap = "3.0.0-beta.2"
+rand = "0.7.3"
 
 [[bin]]
 name = 'caesar'
-path = 'src\caesar\main.rs'
+path = 'src/caesar/main.rs'
+
+[[bin]]
+name = 'scytale'
+path = 'src/scytale/main.rs'

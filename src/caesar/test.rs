@@ -1,4 +1,4 @@
-use crate::{encrypt, decrypt};
+use super::{encrypt, decrypt};
 
 #[test]
 fn test_encrypt() {
