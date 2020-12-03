@@ -17,3 +17,7 @@ path = 'src/caesar/main.rs'
 [[bin]]
 name = 'scytale'
 path = 'src/scytale/main.rs'
+
+[[bin]]
+name = 'transposition'
+path = 'src/transposition/main.rs'
