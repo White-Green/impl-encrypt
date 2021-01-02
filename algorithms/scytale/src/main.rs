@@ -4,12 +4,11 @@ use std::iter::FromIterator;
 use clap::{App, Arg};
 use rand::Rng;
 
+#[cfg(test)]
 mod test;
 
 #[derive(Debug, PartialEq)]
-enum Error {
-    InputValueError(&'static str)
-}
+enum Error {}
 
 fn main() {
     let matches = App::new("scytale")

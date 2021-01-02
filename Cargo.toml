@@ -1,23 +1,6 @@
-[package]
-name = "impl-encrypt"
-version = "0.1.0"
-authors = ["White-Green <43771790+White-Green@users.noreply.github.com>"]
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-clap = "3.0.0-beta.2"
-rand = "0.7.3"
-
-[[bin]]
-name = 'caesar'
-path = 'src/caesar/main.rs'
-
-[[bin]]
-name = 'scytale'
-path = 'src/scytale/main.rs'
-
-[[bin]]
-name = 'transposition'
-path = 'src/transposition/main.rs'
+[workspace]
+members = [
+    "algorithms/caesar",
+    "algorithms/scytale",
+    "algorithms/transposition"
+]

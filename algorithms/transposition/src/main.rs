@@ -5,6 +5,7 @@ use std::str::FromStr;
 
 use clap::{App, Arg};
 
+#[cfg(test)]
 mod test;
 
 #[derive(Debug, PartialEq)]
