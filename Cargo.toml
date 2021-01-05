@@ -2,5 +2,6 @@
 members = [
     "algorithms/caesar",
     "algorithms/scytale",
-    "algorithms/transposition"
+    "algorithms/transposition",
+    "algorithms/des"
 ]
