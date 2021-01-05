@@ -1,5 +1,8 @@
-use crate::{parse_key, utf8_to_binary, hex_string_to_binary, binary_to_hex_string, pc1, pc2, rotate_left, generate_sub_key, ip, ip_inverse, e, p, s, pick_64bit_from_slice, push_64bit, keygen, key_checksum};
 use std::convert::TryInto;
+
+use rand::{Rng, thread_rng};
+
+use crate::{binary_to_hex_string, decrypt, e, encrypt, generate_sub_key, hex_string_to_binary, ip, ip_inverse, key_checksum, keygen, p, parse_key, pc1, pc2, pick_64bit_from_slice, push_64bit, rotate_left, s, utf8_to_binary};
 
 #[test]
 fn test_parse_key() {
@@ -439,4 +442,17 @@ fn test_keygen() {
 }
 
 #[test]
-fn test_encrypt_decrypt() {}
+fn test_encrypt_decrypt() {
+    for _ in 0..100 {
+        let key = keygen();
+        let mut rng = thread_rng();
+        let length = rng.gen_range(1, 128);
+        let mut input = Vec::with_capacity(length);
+        for _ in 0..length {
+            input.push(rng.gen());
+        }
+        let encrypted = encrypt(input.clone(), &key);
+        input.resize((input.len() + 7) / 8 * 8, 0);
+        assert_eq!(decrypt(encrypted, &key), input);
+    }
+}
