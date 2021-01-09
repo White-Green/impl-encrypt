@@ -452,7 +452,7 @@ fn test_encrypt_decrypt() {
             input.push(rng.gen());
         }
         let encrypted = encrypt(input.clone(), &key);
-        input.resize((input.len() + 7) / 8 * 8, 0);
+        input.resize((input.len() + 7) & !7, 0);
         assert_eq!(decrypt(encrypted, &key), input);
     }
 }
